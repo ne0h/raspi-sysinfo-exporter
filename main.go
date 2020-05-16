@@ -9,6 +9,7 @@ import (
 	"strconv"
 
 	"github.com/ne0h/raspi-sysinfo-exporter/internal/fileutil"
+	"github.com/ne0h/raspi-sysinfo-exporter/pkg/load"
 	"github.com/ne0h/raspi-sysinfo-exporter/pkg/platform"
 	"github.com/ne0h/raspi-sysinfo-exporter/pkg/types"
 )
@@ -41,10 +42,17 @@ func main() {
 		temperature, err := getTemperature()
 		if err != nil {
 			log.Printf("[ERROR] Failed to get temperature: %v", err)
+			return
+		}
+		load, err := load.Get()
+		if err != nil {
+			log.Printf("[ERROR] Failed to get system load: %v", err)
+			return
 		}
 
 		resp := types.SysInfo{
 			Platform:    platform,
+			Load:        load,
 			Temperature: temperature,
 		}
 
