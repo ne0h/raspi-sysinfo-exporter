@@ -1,4 +1,4 @@
-# RasPi System Information Exporter
+# Raspberry Pi System Information Exporter
 
 Shows
 
