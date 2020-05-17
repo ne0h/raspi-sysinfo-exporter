@@ -10,6 +10,7 @@ import (
 
 	"github.com/ne0h/raspi-sysinfo-exporter/internal/fileutil"
 	"github.com/ne0h/raspi-sysinfo-exporter/pkg/load"
+	"github.com/ne0h/raspi-sysinfo-exporter/pkg/memory"
 	"github.com/ne0h/raspi-sysinfo-exporter/pkg/platform"
 	"github.com/ne0h/raspi-sysinfo-exporter/pkg/types"
 )
@@ -49,10 +50,16 @@ func main() {
 			log.Printf("[ERROR] Failed to get system load: %v", err)
 			return
 		}
+		memory, err := memory.Get()
+		if err != nil {
+			log.Printf("[ERROR] Failed to get memory usage: %v", err)
+			return
+		}
 
 		resp := types.SysInfo{
 			Platform:    platform,
 			Load:        load,
+			Memory:      memory,
 			Temperature: temperature,
 		}
 
