@@ -1,5 +1,34 @@
 # RasPi System Information Exporter
 
+Shows
+
+* System load (load1, load5, load15)
+* Memory usage (total, free, available)
+* Temperature
+* Platform information
+
+Example
+
+```json
+{
+	"platform": {
+		"model": "Raspberry Pi 3 Model B Rev 1.2",
+		"serial": "000000000056e779"
+	},
+	"load": {
+		"load1": 0.11,
+		"load5": 0.28,
+		"load15": 0.37
+	},
+	"memory": {
+		"total": 948300,
+		"free": 37560,
+		"available": 102160
+	},
+	"temperature": 55.306
+}
+```
+
 ## Build and Lint
 
 ```bash
